@@ -52,6 +52,7 @@ Material:
     - _UIMaskSoftnessY: 1
     - _edge: 1
     - _radius: 0.7
+    - _startPercent: 0
     m_Colors:
     - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _colorEnd: {r: 0, g: 0.11720037, b: 1, a: 1}
