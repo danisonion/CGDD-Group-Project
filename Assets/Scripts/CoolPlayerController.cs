@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-public class PlayerController : MonoBehaviour
+public class CoolPlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
     [SerializeField] private float baseSpeed;
     [SerializeField] private float jumpingPower;
-    
 
     [Header("Grounding")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
+
+    private bool canDoubleJump;
 
     [Header("Crouching")]
     [SerializeField] private float descensionMultiplier;
@@ -22,11 +22,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D collider2d;
 
-    private float inputX, inputY;
     private float baseGravityScale;
     private PlayerFormManager formManager;
 
-    private void Awake() {
+    private void Awake()
+    {
         baseGravityScale = rb.gravityScale;
         formManager = GetComponent<PlayerFormManager>();
     }
@@ -35,10 +35,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(IsGrounded() ? inputX * baseSpeed :
-        Mathf.LerpUnclamped(rb.linearVelocity.x, inputX * baseSpeed, 0.2f), rb.linearVelocity.y);
+        if (IsGrounded())
+        {
+            canDoubleJump = true;
+        }
 
-        if (inputY <= -0.5)
+        //Calls for the input from formManager rather being hosted in own script
+        rb.linearVelocity = new Vector2(IsGrounded() ? formManager.inputX * baseSpeed :
+        Mathf.LerpUnclamped(rb.linearVelocityX, formManager.inputX * baseSpeed, 0.2f), rb.linearVelocityY);
+
+        if (formManager.inputY <= -0.5)
         {
             Crouch(IsGrounded());
             rb.gravityScale = baseGravityScale * descensionMultiplier;
@@ -52,17 +58,12 @@ public class PlayerController : MonoBehaviour
     }
 
     #region PLAYER_CONTROLS
-    public void Move(InputAction.CallbackContext context)
+    private void Crouch(bool sneak)
     {
-        inputX = context.ReadValue<Vector2>().x;
-        inputY = context.ReadValue<Vector2>().y;
-    }
-
-    private void Crouch(bool sneak) {
         if (sneak)
         {
             collider2d.size = new Vector2(1, crouchingHeight);
-            collider2d.offset = new Vector2(0, crouchingHeight/2 -.5f);
+            collider2d.offset = new Vector2(0, crouchingHeight / 2 - .5f);
         }
         else
         {
@@ -77,20 +78,17 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocityY = jumpingPower;
         }
+        else if (context.performed && canDoubleJump)
+        {
+            rb.linearVelocityY = 0;
+            rb.linearVelocityY += jumpingPower;
+            canDoubleJump = false;
+        }
     }
 
     private bool IsGrounded()
     {
         return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1f, 0.1f), CapsuleDirection2D.Horizontal, 0, groundLayer);
-    }
-
-    public void SwapSides(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            formManager.ToggleForm();
-            Debug.Log("Form Switched");
-        }
     }
     #endregion
 }
