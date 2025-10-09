@@ -7,6 +7,10 @@ public class RingSwitcherController : MonoBehaviour
 {
 
     public GameObject player;
+    public Vector2 offset;
+
+    private Camera _camera;
+
     Material _material;
     Image _image;
     Boolean cool = false;
@@ -17,10 +21,17 @@ public class RingSwitcherController : MonoBehaviour
         _image = GetComponent<Image>();
         _material = _image.material;
         _image.enabled = false;
+        _camera = Camera.allCameras[0];
     }
 
     // Update is called once per frame
     void Update()
+    {
+        movingLoop();
+        ((RectTransform)transform).anchoredPosition = (Vector2)_camera.WorldToScreenPoint(player.transform.position) + offset;
+    }
+
+    private void movingLoop()
     {
         if (moving)
         {
@@ -41,8 +52,7 @@ public class RingSwitcherController : MonoBehaviour
             }
         }
     }
-
-    void hideImage()
+    private void hideImage()
     {
         _image.enabled = false;
     }
