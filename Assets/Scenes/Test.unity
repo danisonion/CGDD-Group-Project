@@ -159,7 +159,7 @@ MonoBehaviour:
   jumpingPower: 10
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   groundCheck: {fileID: 383671251}
   descensionMultiplier: 2
   crouchingHeight: 0.6
@@ -181,7 +181,7 @@ MonoBehaviour:
   jumpingPower: 12
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   groundCheck: {fileID: 383671251}
   descensionMultiplier: 2
   crouchingHeight: 0.6
