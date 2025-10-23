@@ -4,15 +4,38 @@ using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("Enemy Attributes")]
     [SerializeField] private float speed;
     [SerializeField] private List<GameObject> destinationPoints = new List<GameObject>();
 
+    [SerializeField] private EnemyData enemyData;
     private Rigidbody2D rb;
     private Transform destination;
     private int destinationID = 0;
+
+    public enum MovementMode
+    {
+        None,
+        Horizontal,
+        Vertical,
+        Omnidirectional
+    }
+    public enum Aggression
+    {
+        No,
+        Partial,
+        Full
+    }
+    [Flags]
+    public enum AttackMode
+    {
+        None=0,
+        Melee=1,
+        Ranged=2,
+        Magic=3
+    }
 
     private void Start()
     {
