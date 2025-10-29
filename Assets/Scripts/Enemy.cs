@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Unity.Hierarchy;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class enemy : MonoBehaviour
 {
@@ -10,10 +9,27 @@ public class enemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private List<GameObject> destinationPoints = new List<GameObject>();
 
+    [SerializeField] private EnemyData enemyData;
     private Rigidbody2D rb;
     private Transform destination;
     private int destinationID = 0;
 
+    public enum MovementMode
+    {
+        None,
+        Horizontal,
+        Vertical,
+        Omnidirectional
+    }
+    
+    [Flags]
+    public enum AttackMode
+    {
+        None=0,
+        Melee=1,
+        Ranged=2,
+        Magic=3
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
