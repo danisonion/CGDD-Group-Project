@@ -133,9 +133,8 @@ GameObject:
   - component: {fileID: 184127729}
   - component: {fileID: 184127728}
   - component: {fileID: 184127727}
-  - component: {fileID: 184127726}
-  - component: {fileID: 184127725}
-  - component: {fileID: 184127724}
+  - component: {fileID: 184127734}
+  - component: {fileID: 184127733}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -143,66 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &184127724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184127723}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 175fa1c5f9905c442befc4cf77966b4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoolPlayerController
-  baseSpeed: 15
-  jumpingPower: 10
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 72
-  groundCheck: {fileID: 383671251}
-  descensionMultiplier: 2
-  crouchingHeight: 0.6
-  rb: {fileID: 184127729}
-  collider2d: {fileID: 184127727}
---- !u!114 &184127725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184127723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e166564384839294d9807136d74e2cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WarmPlayerController
-  baseSpeed: 10
-  jumpingPower: 12
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 72
-  groundCheck: {fileID: 383671251}
-  descensionMultiplier: 2
-  crouchingHeight: 0.6
-  rb: {fileID: 184127729}
-  collider2d: {fileID: 184127727}
---- !u!114 &184127726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184127723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eeb303b655d3514ea64fffed2e21c70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFormManager
-  wPlayerController: {fileID: 184127725}
-  cPlayerController: {fileID: 184127724}
-  playerInput: {fileID: 184127728}
-  currentForm: 0
 --- !u!61 &184127727
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -276,8 +215,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 184127726}
-        m_TargetAssemblyTypeName: PlayerFormManager, Assembly-CSharp
+      - m_Target: {fileID: 184127733}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -296,8 +235,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 184127726}
-        m_TargetAssemblyTypeName: PlayerFormManager, Assembly-CSharp
+      - m_Target: {fileID: 1316205543}
+        m_TargetAssemblyTypeName: RingSwitcherController, Assembly-CSharp
         m_MethodName: SwapSides
         m_Mode: 0
         m_Arguments:
@@ -308,10 +247,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1316205543}
-        m_TargetAssemblyTypeName: RingSwitcherController, Assembly-CSharp
-        m_MethodName: SwapSides
-        m_Mode: 0
+      - m_Target: {fileID: 184127733}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: ToggleForm
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -327,7 +266,19 @@ MonoBehaviour:
     m_ActionId: 27c5f898-bc57-4ee1-8800-db469aca5fe3
     m_ActionName: 'Player/Crouch[/Keyboard/c]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 184127733}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
@@ -502,6 +453,41 @@ Transform:
   - {fileID: 383671251}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &184127733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184127723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eeb303b655d3514ea64fffed2e21c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  entityController: {fileID: 184127734}
+  wControllerData: {fileID: 11400000, guid: 0af3c7e0b224a8446b9a10d80195e293, type: 2}
+  cControllerData: {fileID: 11400000, guid: 2efaa4744c47d20408523d85ac9568be, type: 2}
+  currentForm: 0
+--- !u!114 &184127734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184127723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6732b6c101cf4434f95dcff7fa161b42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityController
+  controllerData: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 72
+  groundCheck: {fileID: 383671251}
+  rb: {fileID: 184127729}
+  collider2d: {fileID: 184127727}
 --- !u!1 &383671250
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ public class RingSwitcherController : MonoBehaviour
 
     Material _material;
     Image _image;
-    Boolean cool = false;
-    Boolean moving = false;
+    bool cool = false;
+    bool moving = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
