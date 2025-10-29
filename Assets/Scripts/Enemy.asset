@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf9941025382e244cbf2fddd02aa7f8f, type: 3}
+  m_Script: {fileID: 11500000, guid: b33da875c09a7dd4d9f2eca28d568033, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   moveSpeed: 0
