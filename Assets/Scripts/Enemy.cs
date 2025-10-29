@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Hierarchy;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [Header("Enemy Attributes")]
     [SerializeField] private float speed;
@@ -21,7 +21,12 @@ public class enemy : MonoBehaviour
         Vertical,
         Omnidirectional
     }
-    
+    public enum Aggression
+    {
+        No,
+        Partial,
+        Full
+    }
     [Flags]
     public enum AttackMode
     {
