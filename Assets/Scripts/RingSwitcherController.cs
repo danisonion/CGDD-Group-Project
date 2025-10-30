@@ -31,6 +31,11 @@ public class RingSwitcherController : MonoBehaviour
         ((RectTransform)transform).anchoredPosition = (Vector2)_camera.WorldToScreenPoint(player.transform.position) + offset;
     }
 
+    private void OnApplicationQuit()
+    {
+        _material.SetFloat("_percent", 1);
+    }
+
     private void movingLoop()
     {
         if (moving)
