@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0dbab66916fe6148839e7b9a5fe7c02, type: 3}
-  m_Name: Cool
+  m_Name: Warm
   m_EditorClassIdentifier: Assembly-CSharp::ControllerData
-  baseSpeed: 15
-  jumpingPower: 10
+  baseSpeed: 10
+  jumpingPower: 12
   maxAirJump: 0
   descensionMultiplier: 2
   crouchingHeight: 0.6

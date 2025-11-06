@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ControllerData", menuName = "Scriptable Objects/ControllerData")]
 public class ControllerData : ScriptableObject
 {
-    [Header("Player Settings")]
+    [Header("Entity Settings")]
     public float baseSpeed;
     public float jumpingPower;
     // How many times the character can double jump, 0 means disabled
