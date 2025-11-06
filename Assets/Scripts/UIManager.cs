@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    private void OnPause(InputAction.CallbackContext context)
+    public void togglePaused()
     {
         if (paused)
         {
@@ -37,5 +37,10 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
         }
+    }
+
+    private void OnPause(InputAction.CallbackContext context)
+    {
+        togglePaused();
     }
 }
