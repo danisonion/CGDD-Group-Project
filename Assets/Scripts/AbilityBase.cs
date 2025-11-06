@@ -69,15 +69,15 @@ abstract public class AbilityBase : MonoBehaviour
     // Call ability(player) to start the ability. Once ability is started, if needed, make sure to call abilityOnFrame
     // inside the Update() method while the ability is active. Once the ability is inactive, be sure to set usingAbility
     // to false.
-    abstract public void ability(GameObject player);
-    public void abilityOnFrame(GameObject player)
+    abstract public void Ability(GameObject player);
+    public void AbilityOnFrame(GameObject player)
     {
         return;
     }
 
     // Override this method if custom condition is required (i.e. Can only be used once the player has hit the ground,
     // pogo'd off an enemy, etc.
-    public bool canUseAbility()
+    public bool CanUseAbility()
     {
         return !usingAbility && !abilityCooldown.IsRunning();
     }
