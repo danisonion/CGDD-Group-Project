@@ -46,17 +46,13 @@ public class Timer
     }
 }
 
-abstract public class AbilitySetBase : MonoBehaviour
+abstract public class AbilityBase : MonoBehaviour
 {
-    public bool usingAbility1;
-    public bool usingAbility2;
-    public bool usingAbility3;
+    public bool usingAbility;
 
-    public Timer abilityTimer1;
-    public Timer abilityTimer2;
-    public Timer abilityTimer3;
+    public Timer abilityCooldown;
 
-    //region We probably don't need this, but I'm keeping it here just in case
+    #region We probably don't need this, but I'm keeping it here just in case
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,26 +64,18 @@ abstract public class AbilitySetBase : MonoBehaviour
     {
         
     }
-    //endregion
+    #endregion
 
-    // Call ability1(player) to start the ability. Once ability is started, if needed, make sure to call ability1OnFrame
-    // inside the Update() method while the ability is active. Once the ability is inactive, be sure to set usingAbility1
+    // Call ability(player) to start the ability. Once ability is started, if needed, make sure to call abilityOnFrame
+    // inside the Update() method while the ability is active. Once the ability is inactive, be sure to set usingAbility
     // to false.
-    abstract public void ability1(GameObject player);
-    public void ability1OnFrame(GameObject player)
+    abstract public void ability(GameObject player);
+    public void abilityOnFrame(GameObject player)
     {
         return;
     }
-
-    abstract public void ability2(GameObject player);
-    public void ability2OnFrame(GameObject player)
+    public bool canUseAbility()
     {
-        return;
-    }
-
-    abstract public void ability3(GameObject player);
-    public void ability3OnFrame(GameObject player)
-    {
-        return;
+        return !usingAbility && !abilityCooldown.IsRunning();
     }
 }
