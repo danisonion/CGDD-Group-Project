@@ -74,6 +74,9 @@ abstract public class AbilityBase : MonoBehaviour
     {
         return;
     }
+
+    // Override this method if custom condition is required (i.e. Can only be used once the player has hit the ground,
+    // pogo'd off an enemy, etc.
     public bool canUseAbility()
     {
         return !usingAbility && !abilityCooldown.IsRunning();
