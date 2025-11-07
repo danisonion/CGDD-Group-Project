@@ -35,7 +35,7 @@ public class Timer
 
     public bool IsRunning()
     {
-        if (Time.time == end_time || !is_running)
+        if (Time.time >= end_time || !is_running)
         {
             is_running = false;
             return false;
@@ -47,7 +47,7 @@ public class Timer
 }
 
 [System.Serializable]
-abstract public class AbilityBase
+abstract public class AbilityBase : Object
 {
     public bool usingAbility;
 

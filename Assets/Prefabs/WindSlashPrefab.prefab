@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4049427588023208761}
   - component: {fileID: 1699740860665587334}
   - component: {fileID: 688746330284157608}
+  - component: {fileID: 3748169433597242599}
   m_Layer: 0
   m_Name: WindSlashPrefab
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 5550742466451730183}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.35, y: 2.02, z: 0}
-  m_LocalScale: {x: 0.6232, y: 1.8883, z: 1}
+  m_LocalPosition: {x: 1.3751, y: 1.452, z: 0}
+  m_LocalScale: {x: 0.5729176, y: 0.7521943, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,7 +109,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -146,14 +147,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550742466451730183}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -164,4 +165,18 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &3748169433597242599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550742466451730183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3395b4f0f6a69eb41a53780a629c6dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindSlashProjectile
+  initialForce: 800
+  slowDownRate: -2

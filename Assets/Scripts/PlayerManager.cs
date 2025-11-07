@@ -7,6 +7,9 @@ public class PlayerManager : EntityManager
     [Header("Components")]
     [SerializeField] private ControllerData wControllerData;
     [SerializeField] private ControllerData cControllerData;
+
+    [Header("Ability Components")]
+    [SerializeField] private GameObject windSlashProjectile;
     
 
     public enum PlayerForm
@@ -20,7 +23,7 @@ public class PlayerManager : EntityManager
 
     private void Awake()
     {
-        wControllerData.abilities = new AbilityBase[] { new WindSlashAbility(gameObject) };
+        wControllerData.abilities = new AbilityBase[] { new WindSlashAbility(gameObject, windSlashProjectile) };
         cControllerData.abilities = new AbilityBase[] {};
         if (currentForm == PlayerForm.Warm)
         {
@@ -32,11 +35,11 @@ public class PlayerManager : EntityManager
         }
     }
 
-    private void FixedUpdate()
+    public void Update()
     {
         foreach (var ability in wControllerData.abilities)
         {
-            ability.AbilityOnFrame(gameObject);
+            ability.AbilityOnFrame();
         }
     }
 
@@ -74,13 +77,13 @@ public class PlayerManager : EntityManager
         switch (context.action.name)
         {
             case "Ability1":
-                entityController.controllerData.abilities[0].Ability(gameObject);
+                entityController.controllerData.abilities[0].Ability();
                 break;
             case "Ability2":
-                entityController.controllerData.abilities[1].Ability(gameObject);
+                entityController.controllerData.abilities[1].Ability();
                 break;
             case "Ability3":
-                entityController.controllerData.abilities[2].Ability(gameObject);
+                entityController.controllerData.abilities[2].Ability();
                 break;
         }
     }
