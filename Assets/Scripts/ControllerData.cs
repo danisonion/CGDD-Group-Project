@@ -16,4 +16,7 @@ public class ControllerData : ScriptableObject
 
     public float gravityMultiplier = 1;
 
+    [Header("Abilities")]
+    public AbilityBase[] abilities;
+
 }

@@ -20,7 +20,8 @@ public class PlayerManager : EntityManager
 
     private void Awake()
     {
-
+        wControllerData.abilities = new AbilityBase[] { new WindSlashAbility(gameObject) };
+        cControllerData.abilities = new AbilityBase[] {};
         if (currentForm == PlayerForm.Warm)
         {
             entityController.controllerData = wControllerData;
@@ -28,6 +29,14 @@ public class PlayerManager : EntityManager
         else
         {
             entityController.controllerData = cControllerData;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        foreach (var ability in wControllerData.abilities)
+        {
+            ability.AbilityOnFrame(gameObject);
         }
     }
 
@@ -55,6 +64,25 @@ public class PlayerManager : EntityManager
         }
         Debug.Log("Current Form: " + currentForm);
 
+    }
+
+    // General function to use different abilities defined in the controllerData variable
+    // WARNING: Please, do not under any circumstances change the name of the inputAction or I will cry
+    // Matching it by strings probably isn't the best idea, but it's the only one I have
+    public void UseAbility(InputAction.CallbackContext context)
+    {
+        switch (context.action.name)
+        {
+            case "Ability1":
+                entityController.controllerData.abilities[0].Ability(gameObject);
+                break;
+            case "Ability2":
+                entityController.controllerData.abilities[1].Ability(gameObject);
+                break;
+            case "Ability3":
+                entityController.controllerData.abilities[2].Ability(gameObject);
+                break;
+        }
     }
 
     //Implemented a central move function that only this script reads the inputs for

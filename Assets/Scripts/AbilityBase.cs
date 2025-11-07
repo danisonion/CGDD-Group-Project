@@ -46,31 +46,28 @@ public class Timer
     }
 }
 
-abstract public class AbilityBase : MonoBehaviour
+[System.Serializable]
+abstract public class AbilityBase
 {
     public bool usingAbility;
 
     public Timer abilityCooldown;
 
-    #region We probably don't need this, but I'm keeping it here just in case
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    public GameObject player;
 
-    }
-
-    // Update is called once per frame
-    void Update()
+    public AbilityBase(GameObject player, Timer cooldown)
     {
-        
+        this.player = player;
+        this.abilityCooldown = cooldown;
     }
-    #endregion
 
     // Call ability(player) to start the ability. Once ability is started, if needed, make sure to call abilityOnFrame
     // inside the Update() method while the ability is active. Once the ability is inactive, be sure to set usingAbility
     // to false.
-    abstract public void Ability(GameObject player);
-    public void AbilityOnFrame(GameObject player)
+    abstract public void Ability();
+
+    // Called once every FixedUpdate (may change to Update, idk)
+    public void AbilityOnFrame()
     {
         return;
     }

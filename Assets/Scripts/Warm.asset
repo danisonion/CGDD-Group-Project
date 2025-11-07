@@ -18,3 +18,4 @@ MonoBehaviour:
   descensionMultiplier: 2
   crouchingHeight: 0.6
   gravityMultiplier: 1
+  abilities: []

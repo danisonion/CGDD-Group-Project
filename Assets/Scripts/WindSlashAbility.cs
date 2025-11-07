@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
 
-public class NewMonoBehaviourScript : AbilityBase
+public class WindSlashAbility : AbilityBase
 {
     public const float initialForce = 4;
     public const float slowDownRate = -0.2f;
@@ -13,7 +13,12 @@ public class NewMonoBehaviourScript : AbilityBase
     public GameObject windSlashProjectile;
     private List<GameObject> projectileInstances;
 
-    public override void Ability(GameObject player)
+    public WindSlashAbility(GameObject player) : base(player, new Timer(0.75f))
+    {
+        projectileInstances = new List<GameObject>();
+    }
+
+    public override void Ability()
     {
         if (CanUseAbility())
         {
@@ -27,7 +32,7 @@ public class NewMonoBehaviourScript : AbilityBase
         }
     }
 
-    public new void AbilityOnFrame(GameObject player)
+    public new void AbilityOnFrame()
     {
         // Not super efficient, but it'll get the work done.
         projectileInstances = projectileInstances.Where(x => x.GetComponent<Rigidbody2D>().linearVelocityX >= 0).ToList();
@@ -37,16 +42,4 @@ public class NewMonoBehaviourScript : AbilityBase
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        abilityCooldown = new Timer(0.75f);
-        projectileInstances = new List<GameObject>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
