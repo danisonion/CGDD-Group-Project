@@ -3,21 +3,36 @@ using UnityEngine;
 public class WindSlashProjectile : MonoBehaviour
 {
     private Rigidbody2D rb;
-    public float initialForce = 300f;
-    public float slowDownRate = -2f;
+    public float initialForceMagnitude;
+    public float slowDownRate;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public bool FacingRight {  get; set; }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForceX(initialForce);
+
+        if (FacingRight)
+        {
+            rb.linearVelocityX = 1;
+        }
+        else
+        {
+            rb.linearVelocityX = -1;
+            initialForceMagnitude *= -1;
+            slowDownRate *= -1;
+        }
+
+        rb.AddForce(transform.right * initialForceMagnitude);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (rb.linearVelocityX < 0)
+        if (FacingRight && rb.linearVelocityX <= 0)
             Destroy(gameObject);
-        rb.AddForceX(slowDownRate);
+        if (!FacingRight && rb.linearVelocityX >= 0)
+            Destroy(gameObject);
+
+        rb.AddForce(transform.right * slowDownRate);
     }
 }

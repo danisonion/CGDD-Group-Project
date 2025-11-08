@@ -14,8 +14,9 @@ public class WindSlashAbility : AbilityBase
     {
         if (CanUseAbility())
         {
-            GameObject projectile = Instantiate(windSlashProjectile, player.transform);
+            GameObject projectile = Instantiate(windSlashProjectile);
             projectile.transform.position = player.transform.position;
+            projectile.GetComponent<WindSlashProjectile>().FacingRight = player.GetComponent<PlayerManager>().facingRight;
 
             abilityCooldown.start();
         }

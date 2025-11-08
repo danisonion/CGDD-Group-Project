@@ -21,6 +21,8 @@ public class PlayerManager : EntityManager
     [Header("Current Form")]
     [SerializeField] PlayerForm currentForm;
 
+    public bool facingRight = true;
+
     private void Awake()
     {
         wControllerData.abilities = new AbilityBase[] { new WindSlashAbility(gameObject, windSlashProjectile) };
@@ -96,6 +98,15 @@ public class PlayerManager : EntityManager
         inputX = value.x;
         inputY = value.y;
 
+        // Intentionally doesn't cover all cases. Player needs to stay the direction they are facing
+        if (inputX < 0)
+        {
+            facingRight = false;
+        }
+        else if (inputX > 0)
+        {
+            facingRight = true;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)

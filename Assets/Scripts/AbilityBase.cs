@@ -16,6 +16,8 @@ public class Timer
         this.start_time = Time.time;
     }
 
+    public Timer() : this(0) { }
+
     public void setDuration(float duration)
     {
         this.duration = duration;
