@@ -23,6 +23,17 @@ public class PlayerManager : EntityManager
     public PlayerForm currentForm;
 
 
+    [System.Serializable]
+    public struct Health
+    {
+        public float Hp;
+        public float MaxHp;
+    }
+
+    [Header("Health & stats")]
+    // Just putting this here for future reference (we still don't have a health mechanic lol)
+    public Health health;
+
 
     [field: NonSerialized] public bool facingRight = true;
 
