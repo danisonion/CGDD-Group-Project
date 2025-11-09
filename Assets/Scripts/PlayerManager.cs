@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,9 +20,11 @@ public class PlayerManager : EntityManager
     }
 
     [Header("Current Form")]
-    [SerializeField] public PlayerForm currentForm;
+    public PlayerForm currentForm;
 
-    public bool facingRight = true;
+
+
+    [field: NonSerialized] public bool facingRight = true;
 
     private void Awake()
     {
