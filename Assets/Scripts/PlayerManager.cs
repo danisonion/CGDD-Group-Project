@@ -19,7 +19,7 @@ public class PlayerManager : EntityManager
     }
 
     [Header("Current Form")]
-    [SerializeField] PlayerForm currentForm;
+    [SerializeField] public PlayerForm currentForm;
 
     public bool facingRight = true;
 
