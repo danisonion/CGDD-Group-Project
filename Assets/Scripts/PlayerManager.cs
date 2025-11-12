@@ -11,7 +11,7 @@ public class PlayerManager : EntityManager
 
     [Header("Ability Components")]
     [SerializeField] private GameObject windSlashProjectile;
-    
+    [SerializeField] private GameObject healingOrb;
 
     public enum PlayerForm
     {
@@ -39,8 +39,20 @@ public class PlayerManager : EntityManager
 
     private void Awake()
     {
-        wControllerData.abilities = new AbilityBase[] { new WindSlashAbility(gameObject, windSlashProjectile) };
-        cControllerData.abilities = new AbilityBase[] {};
+        // THIS IS JUST FOR THE DEMO, MAKE THIS BETTER EVENTUALLY!!!!
+        health = new Health
+        {
+            Hp = 20,
+            MaxHp = 20
+        };
+
+        wControllerData.abilities = new AbilityBase[] {
+            new WindSlashAbility(gameObject, windSlashProjectile),
+        };
+        cControllerData.abilities = new AbilityBase[] {
+            new AstralShieldAbility(gameObject, new Timer(0)),
+            new HealingOrangeAbility(gameObject, healingOrb),
+        };
         if (currentForm == PlayerForm.Warm)
         {
             entityController.controllerData = wControllerData;

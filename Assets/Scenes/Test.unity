@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 184127727}
   - component: {fileID: 184127734}
   - component: {fileID: 184127733}
+  - component: {fileID: 184127735}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -505,7 +506,11 @@ MonoBehaviour:
   wControllerData: {fileID: 11400000, guid: 0af3c7e0b224a8446b9a10d80195e293, type: 2}
   cControllerData: {fileID: 11400000, guid: 2efaa4744c47d20408523d85ac9568be, type: 2}
   windSlashProjectile: {fileID: 5550742466451730183, guid: 3099f000e160b9d459bbc7a0d4a27b41, type: 3}
+  healingOrb: {fileID: 0}
   currentForm: 0
+  health:
+    Hp: 0
+    MaxHp: 0
 --- !u!114 &184127734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,6 +530,28 @@ MonoBehaviour:
   groundCheck: {fileID: 383671251}
   rb: {fileID: 184127729}
   collider2d: {fileID: 184127727}
+--- !u!95 &184127735
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184127723}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &383671250
 GameObject:
   m_ObjectHideFlags: 0
