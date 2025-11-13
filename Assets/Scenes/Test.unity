@@ -506,7 +506,7 @@ MonoBehaviour:
   wControllerData: {fileID: 11400000, guid: 0af3c7e0b224a8446b9a10d80195e293, type: 2}
   cControllerData: {fileID: 11400000, guid: 2efaa4744c47d20408523d85ac9568be, type: 2}
   windSlashProjectile: {fileID: 5550742466451730183, guid: 3099f000e160b9d459bbc7a0d4a27b41, type: 3}
-  healingOrb: {fileID: 0}
+  healingOrb: {fileID: 872141639158410756, guid: 11d3997e185c0d745bd2a7cbda48ee8c, type: 3}
   currentForm: 0
   health:
     Hp: 0

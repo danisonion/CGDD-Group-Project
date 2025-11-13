@@ -14,7 +14,10 @@ public class HealingOrangeAbility : AbilityBase
         if (CanUseAbility())
         {
             GameObject orb = Instantiate(healingOrb);
-            orb.transform.position = player.transform.position + new Vector3(5, 5, 0);
+            orb.transform.position = player.transform.position + new Vector3(3, 3, 0);
+            orb.GetComponent<HealingOrbController>().player = player;
+
+            abilityCooldown.start();
         }
     }
 
