@@ -6,7 +6,7 @@ public class HealingOrbController : MonoBehaviour
     public GameObject player;
 
     public float healing_amount = 5;
-    public float chase_amount = 20;
+    public float chase_amount = 50;
 
     private Rigidbody2D rb;
 
@@ -22,14 +22,13 @@ public class HealingOrbController : MonoBehaviour
         Vector3 direction = player.transform.position - transform.position;
         direction.Normalize();
         rb.AddForce(chase_amount * Time.deltaTime * direction);
-        Debug.DrawRay(transform.position, direction * chase_amount );
-        Debug.Log(direction);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == player)
         {
+            Debug.Log("Hit!");
             PlayerManager man = player.GetComponent<PlayerManager>();
 
             float missingHealth = man.health.MaxHp - man.health.Hp;

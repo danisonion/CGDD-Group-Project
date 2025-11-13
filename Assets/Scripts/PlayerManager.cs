@@ -46,10 +46,11 @@ public class PlayerManager : EntityManager
             MaxHp = 20
         };
 
-        wControllerData.abilities = new AbilityBase[] {
-            new WindSlashAbility(gameObject, windSlashProjectile),
-        };
         cControllerData.abilities = new AbilityBase[] {
+            new WindSlashAbility(gameObject, windSlashProjectile),
+            new LowGravityAbility(gameObject),
+        };
+        wControllerData.abilities = new AbilityBase[] {
             new AstralShieldAbility(gameObject, new Timer(0)),
             new HealingOrangeAbility(gameObject, healingOrb),
         };
