@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ public class PlayerManager : EntityManager
     [Header("Components")]
     [SerializeField] private ControllerData wControllerData;
     [SerializeField] private ControllerData cControllerData;
+
+    [SerializeField] private BoxCollider2D AttackHurtBox;
 
     [Header("Ability Components")]
     [SerializeField] private GameObject windSlashProjectile;
@@ -23,16 +26,7 @@ public class PlayerManager : EntityManager
     public PlayerForm currentForm;
 
 
-    [System.Serializable]
-    public struct Health
-    {
-        public float Hp;
-        public float MaxHp;
-    }
-
-    [Header("Health & stats")]
-    // Just putting this here for future reference (we still don't have a health mechanic lol)
-    public Health health;
+    
 
 
     [field: NonSerialized] public bool facingRight = true;
@@ -49,6 +43,7 @@ public class PlayerManager : EntityManager
         {
             entityController.controllerData = cControllerData;
         }
+        AttackHurtBox.GetComponent<AttackBox>().damage = entityController.controllerData.baseAttackDamage;
     }
 
     public void Update()
@@ -56,6 +51,20 @@ public class PlayerManager : EntityManager
         foreach (var ability in wControllerData.abilities)
         {
             ability.AbilityOnFrame();
+        }
+
+        if (AttackHurtBox.enabled && attackDuration > entityController.controllerData.baseAttackDuration)
+        {
+            AttackHurtBox.enabled = false;
+        }
+        else if (attackDuration < entityController.controllerData.baseAttackDuration)
+        {
+            attackDuration += Time.deltaTime;
+        }
+        
+        if(attackCooldown < entityController.controllerData.baseAttackCooldown)
+        {
+            attackCooldown += Time.deltaTime;
         }
     }
 
@@ -65,6 +74,7 @@ public class PlayerManager : EntityManager
         if (context.performed)
         {
             ToggleForm();
+            AttackHurtBox.GetComponent<AttackBox>().damage = entityController.controllerData.baseAttackDamage;
             Debug.Log("Form Switched");
         }
     }
@@ -85,6 +95,18 @@ public class PlayerManager : EntityManager
 
     }
 
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (attackCooldown < entityController.controllerData.baseAttackCooldown) return;
+            Debug.Log("ATTACK!");
+            attackDuration = 0;
+            attackCooldown = 0;
+            AttackHurtBox.enabled = true;
+        }
+    }
+    
     // General function to use different abilities defined in the controllerData variable
     // WARNING: Please, do not under any circumstances change the name of the inputAction or I will cry
     // Matching it by strings probably isn't the best idea, but it's the only one I have
@@ -116,10 +138,12 @@ public class PlayerManager : EntityManager
         if (inputX < 0)
         {
             facingRight = false;
+            AttackHurtBox.transform.localPosition = new Vector3(-1.5f,0,0);
         }
         else if (inputX > 0)
         {
             facingRight = true;
+            AttackHurtBox.transform.localPosition = new Vector3(1.5f,0,0);
         }
     }
 

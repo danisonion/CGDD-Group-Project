@@ -7,7 +7,11 @@ public class ControllerData : ScriptableObject
     public float baseSpeed;
     public float jumpingPower;
     // How many times the character can double jump, 0 means disabled
-    public int maxAirJump; 
+    public int maxAirJump;
+    [Header("Combat")]
+    public float baseAttackDamage;
+    public float baseAttackDuration;
+    public float baseAttackCooldown;
     
     [Header("Crouching")]
     public float descensionMultiplier;
