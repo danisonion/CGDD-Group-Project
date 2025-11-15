@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerManager : EntityManager
 {
     [Header("Components")]
-    [SerializeField] private ControllerData wControllerData;
-    [SerializeField] private ControllerData cControllerData;
+    // I need this in an external script btw
+    [SerializeField] public ControllerData wControllerData;
+    [SerializeField] public ControllerData cControllerData;
 
     [Header("Ability Components")]
     [SerializeField] private GameObject windSlashProjectile;
