@@ -73,6 +73,11 @@ public class PlayerManager : EntityManager
         }
     }
 
+    void OnDestroy()
+    {
+        cControllerData.gravityMultiplier = 1;
+    }
+
     //Input System --> Player --> SwapSides --> Keyboard F
     public void SwapSides(InputAction.CallbackContext context)
     {

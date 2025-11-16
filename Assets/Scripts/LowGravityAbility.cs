@@ -23,10 +23,13 @@ public class LowGravityAbility : AbilityBase
             {
                 coldController.gravityMultiplier = gravityChange;
                 gravityToggle = true;
+
+                abilityCooldown.start();
             }
             else
             {
                 coldController.gravityMultiplier = initialGravityScale;
+                gravityToggle = false;
 
                 abilityCooldown.start();
             }
