@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControllerData
   baseSpeed: 15
   jumpingPower: 10
-  maxAirJump: 0
+  maxAirJump: 1
   baseAttackDamage: 5
   baseAttackDuration: 0.02
   baseAttackCooldown: 0.1

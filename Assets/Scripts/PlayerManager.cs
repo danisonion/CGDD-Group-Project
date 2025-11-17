@@ -11,6 +11,7 @@ public class PlayerManager : EntityManager
     [SerializeField] private ControllerData cControllerData;
 
     [SerializeField] private BoxCollider2D AttackHurtBox;
+    [SerializeField] private CircleCollider2D PogoSurfBox;
 
     [Header("Ability Components")]
     [SerializeField] private GameObject windSlashProjectile;
@@ -25,9 +26,7 @@ public class PlayerManager : EntityManager
     [Header("Current Form")]
     public PlayerForm currentForm;
 
-
-    
-
+    private bool pogoSurfable;
 
     [field: NonSerialized] public bool facingRight = true;
 
@@ -66,6 +65,9 @@ public class PlayerManager : EntityManager
         {
             attackCooldown += Time.deltaTime;
         }
+
+        PogoSurfBox.enabled = pogoSurfable && inputY < -0.1f;
+        
     }
 
     //Input System --> Player --> SwapSides --> Keyboard F
@@ -104,6 +106,11 @@ public class PlayerManager : EntityManager
             attackDuration = 0;
             attackCooldown = 0;
             AttackHurtBox.enabled = true;
+            pogoSurfable = true;
+        }
+        else if (context.canceled)
+        {
+            pogoSurfable = false;
         }
     }
     
@@ -133,18 +140,31 @@ public class PlayerManager : EntityManager
         Vector2 value = context.ReadValue<Vector2>();
         inputX = value.x;
         inputY = value.y;
-
+        
+        
         // Intentionally doesn't cover all cases. Player needs to stay the direction they are facing
+        
         if (inputX < 0)
         {
             facingRight = false;
-            AttackHurtBox.transform.localPosition = new Vector3(-1.5f,0,0);
         }
         else if (inputX > 0)
         {
             facingRight = true;
-            AttackHurtBox.transform.localPosition = new Vector3(1.5f,0,0);
         }
+        
+        if(inputY > 0.1f)
+        {
+            AttackHurtBox.transform.localPosition = new Vector3(0,1f,0);
+        }
+        else if(inputY < -0.1f)
+        {
+            AttackHurtBox.transform.localPosition = new Vector3(0,-1f,0);
+        } else
+        {
+            AttackHurtBox.transform.localPosition = new Vector3(facingRight?1.5f:-1.5f,0,0);
+        }
+
     }
 
     public void Jump(InputAction.CallbackContext context)
