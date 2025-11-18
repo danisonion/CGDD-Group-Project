@@ -61,7 +61,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -128,11 +128,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 30
-        height: 92
+        y: 92
+        width: 37
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: LF_Walk_v1_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 91
-        width: 35
+        x: 37
+        y: 92
+        width: 37
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: LF_Walk_v1_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 45
-        width: 35
+        x: 74
+        y: 92
+        width: 37
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,12 +193,12 @@ TextureImporter:
       name: LF_Walk_v1_3
       rect:
         serializedVersion: 2
-        x: 43
-        y: 91
-        width: 30
-        height: 47
+        x: 111
+        y: 92
+        width: 37
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,12 +215,12 @@ TextureImporter:
       name: LF_Walk_v1_4
       rect:
         serializedVersion: 2
-        x: 77
-        y: 45
-        width: 27
-        height: 47
+        x: 0
+        y: 46
+        width: 37
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,12 +237,12 @@ TextureImporter:
       name: LF_Walk_v1_5
       rect:
         serializedVersion: 2
-        x: 82
-        y: 91
-        width: 24
-        height: 47
+        x: 37
+        y: 46
+        width: 37
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: LF_Walk_v1_6
       rect:
         serializedVersion: 2
-        x: 116
-        y: 45
-        width: 24
-        height: 93
+        x: 74
+        y: 46
+        width: 37
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -281,12 +281,12 @@ TextureImporter:
       name: LF_Walk_v1_7
       rect:
         serializedVersion: 2
-        x: 43
-        y: 0
-        width: 29
+        x: 111
+        y: 46
+        width: 37
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -303,12 +303,12 @@ TextureImporter:
       name: LF_Walk_v1_8
       rect:
         serializedVersion: 2
-        x: 78
+        x: 0
         y: 0
-        width: 33
-        height: 45
+        width: 37
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,11 +321,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: LF_Walk_v1_9
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb8c2f872586ea4c8b99dc4c8280a26
+      internalID: -13632012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LF_Walk_v1_10
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 0
+        width: 37
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15c8961a39c3e940b1a374884677bcd
+      internalID: 787502800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ab97599d0e0342e4da9df83b86031d02
     internalID: 0
     vertices: []
     indices: 
@@ -333,10 +377,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":37.0,"y":46.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       LF_Walk_v1_0: 2958643789273608845
       LF_Walk_v1_1: -1496867450696337125
+      LF_Walk_v1_10: 787502800
       LF_Walk_v1_2: -7521536340733551731
       LF_Walk_v1_3: 3823089888064937083
       LF_Walk_v1_4: -5989057628970121532
@@ -344,6 +391,7 @@ TextureImporter:
       LF_Walk_v1_6: 6959025698547013271
       LF_Walk_v1_7: -3188475191377728903
       LF_Walk_v1_8: -859455204768181100
+      LF_Walk_v1_9: -13632012
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
