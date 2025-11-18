@@ -38,6 +38,8 @@ public class PlayerManager : EntityManager
 
     [field: NonSerialized] public bool facingRight = true;
 
+    private Animator animator;
+
     private void Awake()
     {
         // THIS IS JUST FOR THE DEMO, MAKE THIS BETTER EVENTUALLY!!!!
@@ -71,6 +73,11 @@ public class PlayerManager : EntityManager
         {
             ability.AbilityOnFrame();
         }
+
+        if (inputX == 0)
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 
     void OnDestroy()
@@ -94,11 +101,13 @@ public class PlayerManager : EntityManager
         {
             currentForm = PlayerForm.Cool;
             entityController.controllerData = cControllerData;
+            animator.SetBool("isLight", false);
         }
         else
         {
             currentForm = PlayerForm.Warm;
             entityController.controllerData = wControllerData;
+            animator.SetBool("isLight", true);
         }
         Debug.Log("Current Form: " + currentForm);
 
@@ -109,6 +118,7 @@ public class PlayerManager : EntityManager
     // Matching it by strings probably isn't the best idea, but it's the only one I have
     public void UseAbility(InputAction.CallbackContext context)
     {
+        animator.SetTrigger("UseAbility");
         switch (context.action.name)
         {
             case "Ability1":
@@ -131,7 +141,8 @@ public class PlayerManager : EntityManager
         inputX = value.x;
         inputY = value.y;
 
-        // Intentionally doesn't cover all cases. Player needs to stay the direction they are facing
+        // Intentionally doesn't cover all cases. Player needs to stay the direction they are facing when
+        // they come to rest
         if (inputX < 0)
         {
             facingRight = false;
@@ -140,6 +151,8 @@ public class PlayerManager : EntityManager
         {
             facingRight = true;
         }
+
+        animator.SetBool("isWalking", true);
     }
 
     public void Jump(InputAction.CallbackContext context)
