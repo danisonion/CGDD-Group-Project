@@ -11,7 +11,7 @@ public class PlayerManager : EntityManager
     [SerializeField] private ControllerData cControllerData;
 
     [SerializeField] private BoxCollider2D AttackHurtBox;
-    [SerializeField] private CircleCollider2D PogoSurfBox;
+    public CircleCollider2D PogoSurfBox;
 
     [Header("Ability Components")]
     [SerializeField] private GameObject windSlashProjectile;
@@ -26,6 +26,7 @@ public class PlayerManager : EntityManager
     [Header("Current Form")]
     public PlayerForm currentForm;
 
+    private bool isAttacking = false;
     private bool pogoSurfable;
 
     [field: NonSerialized] public bool facingRight = true;
@@ -52,7 +53,7 @@ public class PlayerManager : EntityManager
             ability.AbilityOnFrame();
         }
 
-        if (AttackHurtBox.enabled && attackDuration > entityController.controllerData.baseAttackDuration)
+        if (AttackHurtBox.enabled && attackDuration > entityController.controllerData.baseAttackDuration && !(pogoSurfable && inputY < -0.1f))
         {
             AttackHurtBox.enabled = false;
         }
@@ -66,7 +67,9 @@ public class PlayerManager : EntityManager
             attackCooldown += Time.deltaTime;
         }
 
+        
         PogoSurfBox.enabled = pogoSurfable && inputY < -0.1f;
+        if(pogoSurfable && inputY < -0.1f && isAttacking) AttackHurtBox.enabled = true;
         
     }
 
@@ -101,16 +104,19 @@ public class PlayerManager : EntityManager
     {
         if (context.performed)
         {
+            isAttacking = true;
             if (attackCooldown < entityController.controllerData.baseAttackCooldown) return;
             Debug.Log("ATTACK!");
             attackDuration = 0;
             attackCooldown = 0;
             AttackHurtBox.enabled = true;
             pogoSurfable = true;
+            
         }
         else if (context.canceled)
         {
             pogoSurfable = false;
+            isAttacking = false;
         }
     }
     
@@ -160,7 +166,7 @@ public class PlayerManager : EntityManager
         else if(inputY < -0.1f)
         {
             AttackHurtBox.transform.localPosition = new Vector3(0,-1f,0);
-        } else
+        } else if (!isAttacking)
         {
             AttackHurtBox.transform.localPosition = new Vector3(facingRight?1.5f:-1.5f,0,0);
         }
@@ -170,6 +176,10 @@ public class PlayerManager : EntityManager
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed) entityController.Jump();
+    }
+    public void Jump(bool ignoreGrounded = false, float powerMultiplier = 1)
+    {
+        entityController.Jump(ignoreGrounded, powerMultiplier);
     }
 
 }

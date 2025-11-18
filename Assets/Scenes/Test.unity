@@ -9032,7 +9032,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60
-    OrthographicSize: 4.656662
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -9430,6 +9430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   damage: 0
+  playerManager: {fileID: 0}
 --- !u!1 &1501356430
 GameObject:
   m_ObjectHideFlags: 0
@@ -9572,7 +9573,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.656662
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

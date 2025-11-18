@@ -4,6 +4,12 @@ using UnityEngine;
 public class AttackBox : MonoBehaviour
 {
     [HideInInspector] public float damage;
+    public PlayerManager playerManager;
+
+    void Awake()
+    {
+        playerManager = GetComponentInParent<PlayerManager>();
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if colliding object has an Enemy tag
@@ -17,6 +23,7 @@ public class AttackBox : MonoBehaviour
             {
                 Debug.LogWarning("HIT, target does not have entityManager script.");
             }
+            if(playerManager.PogoSurfBox.enabled) playerManager.Jump(true, 2f);
         }
     }
 }
