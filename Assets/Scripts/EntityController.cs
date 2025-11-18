@@ -8,6 +8,7 @@ public class EntityController : MonoBehaviour
 {
     [Header("Controller Settings")]
     public ControllerData controllerData;
+    public float sizeX, sizeY;
     // [SerializeField] private float baseSpeed;
     // [SerializeField] private float jumpingPower;
 
@@ -35,6 +36,7 @@ public class EntityController : MonoBehaviour
     {
         baseGravityScale = rb.gravityScale;
         entityManager = GetComponent<EntityManager>();
+        groundCheck.position = new Vector3(0, -sizeY/2f);
     }
 
 
@@ -68,12 +70,12 @@ public class EntityController : MonoBehaviour
     {
         if (sneak)
         {
-            collider2d.size = new Vector2(1, controllerData.crouchingHeight);
-            collider2d.offset = new Vector2(0, controllerData.crouchingHeight / 2 - .5f);
+            collider2d.size = new Vector2(sizeX, sizeY*controllerData.crouchingHeight);
+            collider2d.offset = new Vector2(0, -(1-controllerData.crouchingHeight)*sizeY/2f);
         }
         else
         {
-            collider2d.size = new Vector2(1, 1);
+            collider2d.size = new Vector2(sizeX, sizeY);
             collider2d.offset = new Vector2(0, 0);
         }
     }

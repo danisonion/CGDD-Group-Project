@@ -180,13 +180,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.45}
+    oldSize: {x: 1.5, y: 2.25}
     newSize: {x: 0.3, y: 0.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1, y: 1.1}
+  m_Size: {x: 1.1, y: 2.2}
   m_EdgeRadius: 0
 --- !u!114 &184127728
 MonoBehaviour:
@@ -413,7 +413,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -427,7 +427,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 383671251}
@@ -467,6 +467,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityController
   controllerData: {fileID: 0}
+  sizeX: 1.1
+  sizeY: 2.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -711,7 +713,6 @@ GameObject:
   - component: {fileID: 881662361}
   - component: {fileID: 881662360}
   - component: {fileID: 881662362}
-  - component: {fileID: 881662363}
   m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
@@ -8963,18 +8964,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &881662363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881662358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f624044e99476148857a70be20fb20f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WindSlashAbility
 --- !u!1001 &1316205541
 PrefabInstance:
   m_ObjectHideFlags: 0
