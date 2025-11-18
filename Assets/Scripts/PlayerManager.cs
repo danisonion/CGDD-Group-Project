@@ -49,6 +49,8 @@ public class PlayerManager : EntityManager
             MaxHp = 20
         };
 
+        animator = GetComponent<Animator>();
+
         cControllerData.abilities = new AbilityBase[] {
             new WindSlashAbility(gameObject, windSlashProjectile),
             new LowGravityAbility(gameObject),
@@ -148,10 +150,12 @@ public class PlayerManager : EntityManager
         if (inputX < 0)
         {
             facingRight = false;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else if (inputX > 0)
         {
             facingRight = true;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
 
         animator.SetBool("isWalking", true);
