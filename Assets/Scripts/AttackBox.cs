@@ -23,7 +23,7 @@ public class AttackBox : MonoBehaviour
             {
                 Debug.LogWarning("HIT, target does not have entityManager script.");
             }
-            if(playerManager.PogoSurfBox.enabled) playerManager.Jump(true, 2f);
+            if(playerManager.PogoSurfBox.enabled) playerManager.Jump(true, playerManager.pogoMultiplier);
         }
     }
 }

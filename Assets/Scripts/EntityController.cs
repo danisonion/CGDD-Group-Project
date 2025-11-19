@@ -36,7 +36,7 @@ public class EntityController : MonoBehaviour
     {
         baseGravityScale = rb.gravityScale;
         entityManager = GetComponent<EntityManager>();
-        groundCheck.position = new Vector3(0, -sizeY/2f);
+        groundCheck.localPosition = new Vector3(0, -sizeY/2f);
     }
 
 

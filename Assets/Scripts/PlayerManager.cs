@@ -12,9 +12,10 @@ public class PlayerManager : EntityManager
     [SerializeField] public ControllerData cControllerData;
 
     [SerializeField] private BoxCollider2D AttackHurtBox;
-    public CircleCollider2D PogoSurfBox;
+    public BoxCollider2D PogoSurfBox;
 
     [Header("Ability Components")]
+    public float pogoMultiplier;
     [SerializeField] private GameObject windSlashProjectile;
     [SerializeField] private GameObject healingOrb;
 
@@ -62,6 +63,8 @@ public class PlayerManager : EntityManager
             entityController.controllerData = cControllerData;
         }
         AttackHurtBox.GetComponent<AttackBox>().damage = entityController.controllerData.baseAttackDamage;
+        PogoSurfBox.size = new Vector2(entityController.sizeX, PogoSurfBox.size.y);
+        //PogoSurfBox.transform.localPosition = new Vector3(0, -(entityController.sizeY/2),4498);
     }
 
     public void Update()
