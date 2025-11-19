@@ -15,7 +15,11 @@ MonoBehaviour:
   baseSpeed: 10
   jumpingPower: 12
   maxAirJump: 0
+  baseAttackDamage: 5
+  baseAttackDuration: 0.02
+  baseAttackCooldown: 0.4
   descensionMultiplier: 2
   crouchingHeight: 0.6
   gravityMultiplier: 1
-  abilities: []
+  abilities:
+  - {fileID: 0}

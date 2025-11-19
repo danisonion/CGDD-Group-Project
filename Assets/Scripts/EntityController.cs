@@ -80,16 +80,16 @@ public class EntityController : MonoBehaviour
         }
     }
 
-    public void Jump()
+    public void Jump(bool ignoreGrounded = false, float powerMultiplier = 1)
     {
-        if (IsGrounded())
+        if (IsGrounded() || ignoreGrounded)
         {
-            rb.linearVelocityY = controllerData.jumpingPower;
+            rb.linearVelocityY = controllerData.jumpingPower * powerMultiplier;
         }
         else if (airJumpCount < controllerData.maxAirJump)
         {
             rb.linearVelocityY = 0;
-            rb.linearVelocityY += controllerData.jumpingPower;
+            rb.linearVelocityY += controllerData.jumpingPower * powerMultiplier;
             airJumpCount++;
         }
     }

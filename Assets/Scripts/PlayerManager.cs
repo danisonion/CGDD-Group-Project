@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ public class PlayerManager : EntityManager
     // I need this in an external script btw
     [SerializeField] public ControllerData wControllerData;
     [SerializeField] public ControllerData cControllerData;
+
+    [SerializeField] private BoxCollider2D AttackHurtBox;
+    public CircleCollider2D PogoSurfBox;
 
     [Header("Ability Components")]
     [SerializeField] private GameObject windSlashProjectile;
@@ -23,18 +27,8 @@ public class PlayerManager : EntityManager
     [Header("Current Form")]
     public PlayerForm currentForm;
 
-
-    [System.Serializable]
-    public struct Health
-    {
-        public float Hp;
-        public float MaxHp;
-    }
-
-    [Header("Health & stats")]
-    // Just putting this here for future reference (we still don't have a health mechanic lol)
-    public Health health;
-
+    private bool isAttacking = false;
+    private bool pogoSurfable;
 
     [field: NonSerialized] public bool facingRight = true;
 
@@ -67,6 +61,7 @@ public class PlayerManager : EntityManager
         {
             entityController.controllerData = cControllerData;
         }
+        AttackHurtBox.GetComponent<AttackBox>().damage = entityController.controllerData.baseAttackDamage;
     }
 
     public void Update()
@@ -80,11 +75,30 @@ public class PlayerManager : EntityManager
         {
             animator.SetBool("isWalking", false);
         }
+        if (AttackHurtBox.enabled && attackDuration > entityController.controllerData.baseAttackDuration && !(pogoSurfable && inputY < -0.1f))
+        {
+            AttackHurtBox.enabled = false;
+        }
+        else if (attackDuration < entityController.controllerData.baseAttackDuration)
+        {
+            attackDuration += Time.deltaTime;
+        }
+        
+        if(attackCooldown < entityController.controllerData.baseAttackCooldown)
+        {
+            attackCooldown += Time.deltaTime;
+        }
+
+        
+        PogoSurfBox.enabled = pogoSurfable && inputY < -0.1f;
+        if(pogoSurfable && inputY < -0.1f && isAttacking) AttackHurtBox.enabled = true;
+        
     }
 
     void OnDestroy()
     {
         cControllerData.gravityMultiplier = 1;
+        
     }
 
     //Input System --> Player --> SwapSides --> Keyboard F
@@ -93,6 +107,7 @@ public class PlayerManager : EntityManager
         if (context.performed)
         {
             ToggleForm();
+            AttackHurtBox.GetComponent<AttackBox>().damage = entityController.controllerData.baseAttackDamage;
             Debug.Log("Form Switched");
         }
     }
@@ -115,6 +130,26 @@ public class PlayerManager : EntityManager
 
     }
 
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isAttacking = true;
+            if (attackCooldown < entityController.controllerData.baseAttackCooldown) return;
+            Debug.Log("ATTACK!");
+            attackDuration = 0;
+            attackCooldown = 0;
+            AttackHurtBox.enabled = true;
+            pogoSurfable = true;
+            
+        }
+        else if (context.canceled)
+        {
+            pogoSurfable = false;
+            isAttacking = false;
+        }
+    }
+    
     // General function to use different abilities defined in the controllerData variable
     // WARNING: Please, do not under any circumstances change the name of the inputAction or I will cry
     // Matching it by strings probably isn't the best idea, but it's the only one I have
@@ -145,6 +180,10 @@ public class PlayerManager : EntityManager
 
         // Intentionally doesn't cover all cases. Player needs to stay the direction they are facing when
         // they come to rest
+        
+        
+        // Intentionally doesn't cover all cases. Player needs to stay the direction they are facing
+        
         if (inputX < 0)
         {
             facingRight = false;
@@ -157,11 +196,28 @@ public class PlayerManager : EntityManager
         }
 
         animator.SetBool("isWalking", true);
+        
+        if(inputY > 0.1f)
+        {
+            AttackHurtBox.transform.localPosition = new Vector3(0,1f,0);
+        }
+        else if(inputY < -0.1f)
+        {
+            AttackHurtBox.transform.localPosition = new Vector3(0,-1f,0);
+        } else if (!isAttacking)
+        {
+            AttackHurtBox.transform.localPosition = new Vector3(facingRight?1.5f:-1.5f,0,0);
+        }
+
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed) entityController.Jump();
+    }
+    public void Jump(bool ignoreGrounded = false, float powerMultiplier = 1)
+    {
+        entityController.Jump(ignoreGrounded, powerMultiplier);
     }
 
 }
