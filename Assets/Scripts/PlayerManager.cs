@@ -67,8 +67,6 @@ public class PlayerManager : EntityManager
         {
             entityController.controllerData = cControllerData;
         }
-
-        animator = GetComponent<Animator>();
     }
 
     public void Update()
