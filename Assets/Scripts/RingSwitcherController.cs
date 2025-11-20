@@ -22,6 +22,11 @@ public class RingSwitcherController : MonoBehaviour
         _material = _image.material;
         _image.enabled = false;
         _camera = Camera.allCameras[0];
+
+        if (player.GetComponent<PlayerManager>().currentForm == PlayerManager.PlayerForm.Warm)
+            _material.SetFloat("_percent", 1);
+        else
+            _material.SetFloat("_percent", 0);
     }
 
     // Update is called once per frame
@@ -66,5 +71,11 @@ public class RingSwitcherController : MonoBehaviour
             _image.enabled = true;
             CancelInvoke(nameof(hideImage));
         }
+    }
+
+    private void OnDisable()
+    {
+        // Fix the stupid git commits that change the value by .000003 or smth
+        _material.SetFloat("_percent", 1);
     }
 }

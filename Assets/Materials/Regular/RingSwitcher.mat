@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _BorderWidth: 0.05
     - _ColorMask: 15
-    - _Percent: 1.0023048
+    - _Percent: 1.008324
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
